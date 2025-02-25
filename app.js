@@ -1,16 +1,14 @@
 import express from 'express';
-import { fetchCars } from './model/model.js'; // Adjust the path as necessary
 const app = express();
 app.use(express.json());
-app.get('/cars', async (req, res) => {
-    try {
-        const cars = await fetchCars();
-        res.json(cars);
-    }
-    catch (error) {
-        res.status(500).json({ error: 'Failed to fetch cars.' });
-    }
-});
+// app.get('/cars', async (req, res) => {
+// });
+// try {
+//   const cars = await fetchCars();
+//   res.json(cars);
+// } catch (error) {
+//   res.status(500).json({ error: 'Failed to fetch cars.' });
+// }
 app.all('/*', (req, res) => {
     res.status(404).send({ msg: 'Item does not exist' });
 });
