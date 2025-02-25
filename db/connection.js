@@ -1,19 +1,14 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const { config } = require('dotenv');
-const pg_1 = require("pg");
-const ENV = process.env.NODE_ENV || 'testt';
-require('dotenv').config({
-    path: `${__dirname}/../.env.${ENV}`,
-});
-const pool = new pg_1.Pool({
-    user: 'postgres',
+import pg from 'pg';
+const { Pool } = pg;
+// Create a new Pool instance with your database configuration
+const pool = new pg.Pool({
     host: 'localhost',
-    database: 'carFinder',
-    password: process.env.DB_PASSWORD,
+    user: 'postgres',
     port: 5432,
+    password: 'postgres',
+    database: 'carFinder',
+    max: 20,
+    idleTimeoutMillis: 30000,
+    connectionTimeoutMillis: 2000,
 });
-if (!process.env.PGDATABASE && !process.env.DATABASE_URL) {
-    throw new Error('PGDATABASE/DB_URL not set');
-}
-exports.default = pool;
+export default pool;

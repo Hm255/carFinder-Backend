@@ -1,23 +1,17 @@
-const { config } = require('dotenv');
-import { Pool } from 'pg';
-const ENV = process.env.NODE_ENV || 'testt';
+import pg from 'pg';
 
-require('dotenv').config({
-    path: `${__dirname}/../.env.${ENV}`,
-  });
+const { Pool } = pg;
 
-const pool = new Pool({
-  user: 'postgres', 
-  host: 'localhost', 
-  database: 'carFinder', 
-  password: process.env.DB_PASSWORD, 
-  port: 5432, 
+// Create a new Pool instance with your database configuration
+const pool = new pg.Pool({
+  host: 'localhost',
+  user: 'postgres',
+  port: 5432,
+  password: 'postgres',
+  database: 'carFinder',
+  max: 20,
+  idleTimeoutMillis: 30000,
+  connectionTimeoutMillis: 2000,
 });
 
-if (!process.env.PGDATABASE && !process.env.DATABASE_URL) {
-    throw new Error('PGDATABASE/DB_URL not set');
-  }  
-
 export default pool;
-
-
