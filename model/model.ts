@@ -2,7 +2,7 @@ import db from '../db/connection.js';
 
 // models/carModel.ts
 
-interface Car {
+export interface Car {
   registration_number: string; // character(7)
   make_id: number; // integer
   model_id: number; // integer
