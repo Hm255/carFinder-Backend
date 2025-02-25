@@ -1,5 +1,5 @@
 import express, {Request, Response} from "express";
-import { fetchCars, Car } from '../model/model';
+import { fetchCars, Car } from '../model/model.js';
 
 export const getCars = (req: Request, res: Response): void => {
     fetchCars()

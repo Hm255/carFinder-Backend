@@ -5,9 +5,7 @@ const app = express();
 app.use(express.json());
 
 
-// app.get('/cars', async (req, res) => {
-  
-// });
+app.get('/cars', getCars)
 
 // try {
 //   const cars = await fetchCars();

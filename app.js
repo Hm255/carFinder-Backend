@@ -1,8 +1,9 @@
 import express from 'express';
+// Adjust the path as necessary
+import { getCars } from './controller/controller.js';
 const app = express();
 app.use(express.json());
-// app.get('/cars', async (req, res) => {
-// });
+app.get('/cars', getCars);
 // try {
 //   const cars = await fetchCars();
 //   res.json(cars);
