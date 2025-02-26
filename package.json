@@ -6,6 +6,7 @@
   "main": "model.js",
   "scripts": {
     "test": "jest",
+    "seed": "node ./db/seed.js",
     "build": "tsc",
     "start": "node listen.js",
     "dev": "nodemon --watch './**/*.ts' --exec 'ts-node' ./app.ts"
