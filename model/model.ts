@@ -26,5 +26,6 @@ export interface Car {
 
 export const fetchCars = async (): Promise<Car[]> => {
     const { rows }: { rows: Car[] } = await db.query('SELECT * FROM cars');
+    console.log(rows)
     return rows;
 };
