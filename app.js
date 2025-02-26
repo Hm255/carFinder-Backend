@@ -5,7 +5,7 @@ import cors from 'cors';
 const app = express();
 app.use(cors()); //cross origin resource sharing, this will allow my application to communicate between backend and frontend
 app.use(express.json());
-app.get('/cars', getCars);
+app.get('/api/cars', getCars);
 // Catch-all route
 app.all('/*', (req, res) => {
     res.status(404).send({ msg: 'Item does not exist' });

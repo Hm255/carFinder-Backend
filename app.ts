@@ -8,7 +8,7 @@ app.use(cors()); //cross origin resource sharing, this will allow my application
 app.use(express.json());
 
 
-app.get('/cars', getCars)
+app.get('/api/cars', getCars)
 
 
 // Catch-all route
