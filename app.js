@@ -1,7 +1,9 @@
 import express from 'express';
 // Adjust the path as necessary
 import { getCars } from './controller/controller.js';
+import cors from 'cors';
 const app = express();
+app.use(cors()); //cross origin resource sharing, this will allow my application to communicate between backend and frontend
 app.use(express.json());
 app.get('/cars', getCars);
 // try {
