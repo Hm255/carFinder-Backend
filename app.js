@@ -6,30 +6,27 @@ const app = express();
 app.use(cors()); //cross origin resource sharing, this will allow my application to communicate between backend and frontend
 app.use(express.json());
 app.get('/cars', getCars);
-// try {
-//   const cars = await fetchCars();
-//   res.json(cars);
-// } catch (error) {
-//   res.status(500).json({ error: 'Failed to fetch cars.' });
-// }
+// Catch-all route
 app.all('/*', (req, res) => {
     res.status(404).send({ msg: 'Item does not exist' });
 });
-//   app.use((err, req, res, next) => {
-//     if(err.code === '22P02'){
-//     res.status(400).send({ msg: "invalid type (type is wrong)" });
-//     }
-//     else if(err.code === '22003'){
-//       res.status(404).send({msg: "Item does not exist"});
-//     }
-//     else if (err.code === '23502'){
-//       res.status(404).send({msg: "Item does not exist"});
-//     }
-//     else{
-//       next()
-//     }
-//   })
-//   app.use((err, req, res, next) => {
-//     res.status(500).send({ msg: "something went wrong" });
-//   });
+// Error-handling middleware for PostgreSQL errors
+app.use((err, req, res, next) => {
+    if (err.code === '22P02') {
+        res.status(400).send({ msg: "Invalid type (type is wrong)" });
+    }
+    else if (err.code === '22003') {
+        res.status(404).send({ msg: "Item does not exist, psql (error 22003)" });
+    }
+    else if (err.code === '23502') {
+        res.status(404).send({ msg: "Item does not exist (error 23502)" });
+    }
+    else {
+        next(err);
+    }
+});
+// Generic error-handling middleware
+app.use((err, req, res, next) => {
+    res.status(500).send({ msg: "Something went wrong" });
+});
 export default app;
