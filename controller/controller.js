@@ -1,4 +1,3 @@
-import express from "express";
 import { fetchCars } from '../model/model.js';
 export const getCars = (req, res) => {
     fetchCars()
@@ -10,5 +9,3 @@ export const getCars = (req, res) => {
         res.status(500).json({ error: 'Failed to fetch cars.' });
     });
 };
-const app = express();
-export default app;
