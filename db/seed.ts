@@ -1,6 +1,6 @@
 import pool from './connection.js';
 
-const seedDatabase = async () => {
+export const seedDatabase = async () => {
   let client;
 
   try {
@@ -196,8 +196,9 @@ const seedDatabase = async () => {
     }
 
    
-    await pool.end();
+    // await pool.end(); commented out for jest afterAll function to run smoothly
   }
 };
 
 seedDatabase();
+
