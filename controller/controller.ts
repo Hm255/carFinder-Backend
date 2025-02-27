@@ -11,3 +11,4 @@ export const getCars = (req: Request, res: Response): void => {
       res.status(500).json({ error: 'Failed to fetch cars.' });
     });
 };
+
