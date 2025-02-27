@@ -4,16 +4,16 @@ const seedDatabase = async () => {
   let client;
 
   try {
-    // Connect to the database
+   
     client = await pool.connect();
 
-    // Start a transaction
+    
     await client.query('BEGIN');
 
-    // Disable foreign key checks temporarily
+    
     await client.query('SET CONSTRAINTS ALL DEFERRED;');
 
-    // Truncate tables in reverse order of dependencies
+    
     await client.query('TRUNCATE TABLE cars RESTART IDENTITY CASCADE;');
     await client.query('TRUNCATE TABLE carmodels RESTART IDENTITY CASCADE;');
     await client.query('TRUNCATE TABLE carmakes RESTART IDENTITY CASCADE;');
@@ -21,7 +21,7 @@ const seedDatabase = async () => {
     await client.query('TRUNCATE TABLE taxstatuses RESTART IDENTITY CASCADE;');
     await client.query('TRUNCATE TABLE wheelplans RESTART IDENTITY CASCADE;');
 
-    // Seed carmakes
+    
     const carmakesData = [
       { make_id: 1, make_name: 'Tesla' },
       { make_id: 2, make_name: 'Ford' },
@@ -34,7 +34,7 @@ const seedDatabase = async () => {
       );
     }
 
-    // Seed carmodels
+    
     const carmodelsData = [
       { model_id: 1, model_name: 'Tesla Model Y long range AWD', make_id: 1 },
       { model_id: 2, model_name: 'Focus', make_id: 2 },
@@ -47,7 +47,7 @@ const seedDatabase = async () => {
       );
     }
 
-    // Seed fueltypes
+    
     const fueltypesData = [
       { fuel_type_id: 1, fuel_type_name: 'ELECTRICITY' },
       { fuel_type_id: 2, fuel_type_name: 'PETROL' },
@@ -61,7 +61,7 @@ const seedDatabase = async () => {
       );
     }
 
-    // Seed taxstatuses
+    
     const taxstatusesData = [
       { tax_status_id: 1, tax_status_name: 'Yes' },
       { tax_status_id: 0, tax_status_name: 'No' },
@@ -74,7 +74,7 @@ const seedDatabase = async () => {
       );
     }
 
-    // Seed wheelplans
+   
     const wheelplansData =  [
       { wheel_plan_id: 1, wheel_plan_name: '2 WHEEL' },
       { wheel_plan_id: 2, wheel_plan_name: '3 WHEEL' },
@@ -105,7 +105,7 @@ const seedDatabase = async () => {
       );
     }
 
-    // Seed cars
+    
     const carsData = [
       {
         registration_number: 'TESLA12',
@@ -127,7 +127,7 @@ const seedDatabase = async () => {
         wheel_plan_id: 11,
         power_output: 384,
       },
-      // Add more car data as needed
+      
     ];
 
     for (const car of carsData) {
@@ -178,24 +178,24 @@ const seedDatabase = async () => {
       );
     }
 
-    // Commit the transaction
+    
     await client.query('COMMIT');
 
     console.log('Database seeded successfully!');
   } catch (error) {
     console.error('Error seeding the database:', error);
 
-    // Rollback the transaction in case of error
+    
     if (client) {
       await client.query('ROLLBACK');
     }
   } finally {
-    // Release the client back to the pool
+    
     if (client) {
       client.release();
     }
 
-    // Close the pool
+   
     await pool.end();
   }
 };

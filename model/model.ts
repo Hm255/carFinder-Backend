@@ -1,7 +1,7 @@
 import db from '../db/connection.js';
 
 
-// export interface Car {
+// export interface Car { //old structure more similar to the main cars table
 //   registration_number: string; // character(7)
 //   make_id: number; // integer
 //   model_id: number; // integer
