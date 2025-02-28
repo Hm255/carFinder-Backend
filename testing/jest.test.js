@@ -1,6 +1,6 @@
 "use strict";
 const request = require('supertest');
-const app = require('../app'); // potential extra
+const app = require('../app'); // potential extra?
 const pool = require('../db/connection');
 const { seedDatabase } = require('../db/seed');
 const { typeof: Car } = require('../model/model');
