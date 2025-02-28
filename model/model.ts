@@ -5,11 +5,11 @@ export interface Car {
   color: string;                   // character varying(30)
   engine_size: number;             // integer
   year_of_manufacture: number;     // integer
-  date_of_manufacture: Date;       // date
+  date_of_manufacture: string;       // date
   co2_emissions: number;           // integer
-  tax_due_date: Date;              // date
-  date_of_last_v5c_issued: Date;   // date
-  first_used_date: Date;           // date
+  tax_due_date: string;              // date
+  date_of_last_v5c_issued: string;   // date
+  first_used_date: string;           // date
   marked_for_export: boolean;      // boolean
   has_outstanding_recall: boolean; // boolean
   type_approval: string;           // character varying(10)
