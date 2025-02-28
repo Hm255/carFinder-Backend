@@ -3,8 +3,6 @@ export const fetchCars = async () => {
     const query = `
     SELECT
       c.registration_number,
-      c.make_id,
-      c.model_id,
       c.color,
       c.engine_size,
       c.year_of_manufacture,
@@ -16,9 +14,6 @@ export const fetchCars = async () => {
       c.marked_for_export,
       c.has_outstanding_recall,
       c.type_approval,
-      c.fuel_type_id,
-      c.tax_status_id,
-      c.wheel_plan_id,
       c.power_output,
       c.price,
       cm.make_name AS make,

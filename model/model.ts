@@ -1,36 +1,32 @@
 import db from '../db/connection.js';
 
 export interface Car {
-  registration_number: string; // character(7)
-  make_id: number;             // integer
-  model_id: number;            // integer
-  color: string;               // character varying(30)
-  engine_size: number;         // integer
-  year_of_manufacture: number; // integer
-  date_of_manufacture: Date;   // date
-  co2_emissions: number;       // integer
-  tax_due_date: Date;          // date
-  date_of_last_v5c_issued: Date; // date
-  first_used_date: Date;       // date
-  marked_for_export: boolean;  // boolean
+  registration_number: string;     // character(7)
+  color: string;                   // character varying(30)
+  engine_size: number;             // integer
+  year_of_manufacture: number;     // integer
+  date_of_manufacture: Date;       // date
+  co2_emissions: number;           // integer
+  tax_due_date: Date;              // date
+  date_of_last_v5c_issued: Date;   // date
+  first_used_date: Date;           // date
+  marked_for_export: boolean;      // boolean
   has_outstanding_recall: boolean; // boolean
-  type_approval: string;       // character varying(10)
-  fuel_type_id: number;        // integer
-  tax_status_id: number;       // integer
-  wheel_plan_id: number;       // integer
-  power_output: number;        // integer
-  price: number;               // number
+  type_approval: string;           // character varying(10)
+  power_output: number;            // integer
+  price: number;                   // integer or decimal, depending on your schema
+  make: string;                    // Make name
+  model: string;                   // Model name
+  fuel_type: string;               // Fuel type name
+  tax_status: string;              // Tax status name
+  wheel_plan: string;              // Wheel plan name
 }
-
-
 
 
 export const fetchCars = async (): Promise<Car[]> => {
   const query = `
     SELECT
       c.registration_number,
-      c.make_id,
-      c.model_id,
       c.color,
       c.engine_size,
       c.year_of_manufacture,
@@ -42,9 +38,6 @@ export const fetchCars = async (): Promise<Car[]> => {
       c.marked_for_export,
       c.has_outstanding_recall,
       c.type_approval,
-      c.fuel_type_id,
-      c.tax_status_id,
-      c.wheel_plan_id,
       c.power_output,
       c.price,
       cm.make_name AS make,

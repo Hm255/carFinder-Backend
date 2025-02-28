@@ -96,7 +96,7 @@ export const seedDatabase = async () => {
                 price: 40000
             },
             {
-                registration_number: 'GT40 FRD',
+                registration_number: 'GT40FRD',
                 make_id: 2,
                 model_id: 2,
                 color: 'Blue',
@@ -117,7 +117,7 @@ export const seedDatabase = async () => {
                 price: 2500000
             },
             {
-                registration_number: 'AU21 JKL',
+                registration_number: 'AU21JKL',
                 make_id: 3,
                 model_id: 3,
                 color: 'Grey',
@@ -138,7 +138,7 @@ export const seedDatabase = async () => {
                 price: 15000
             },
             {
-                registration_number: 'BT70 MNO',
+                registration_number: 'BT70MNO',
                 make_id: 4,
                 model_id: 4,
                 color: 'White',
@@ -159,7 +159,7 @@ export const seedDatabase = async () => {
                 price: 80000
             },
             {
-                registration_number: 'VE16 AUD',
+                registration_number: 'VE16AUD',
                 make_id: 5,
                 model_id: 5,
                 color: 'Silver',
@@ -180,7 +180,7 @@ export const seedDatabase = async () => {
                 price: 1200000000
             },
             {
-                registration_number: 'DX71 STU',
+                registration_number: 'DX71STU',
                 make_id: 6,
                 model_id: 6,
                 color: 'Sky blue',
