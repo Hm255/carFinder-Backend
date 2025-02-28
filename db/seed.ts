@@ -25,6 +25,10 @@ export const seedDatabase = async () => {
     const carmakesData = [
       { make_id: 1, make_name: 'Tesla' },
       { make_id: 2, make_name: 'Ford' },
+      { make_id: 3, make_name: 'Volkswagen' },
+      { make_id: 4, make_name: 'BMW' },
+      { make_id: 5, make_name: 'Audi' },
+      { make_id: 6, make_name: 'Nissan' },
     ];
 
     for (const make of carmakesData) {
@@ -37,7 +41,11 @@ export const seedDatabase = async () => {
     
     const carmodelsData = [
       { model_id: 1, model_name: 'Tesla Model Y long range AWD', make_id: 1 },
-      { model_id: 2, model_name: 'Focus', make_id: 2 },
+      { model_id: 2, model_name: 'GT40', make_id: 2 },
+      { model_id: 3, model_name: 'Golf R32', make_id: 3 },
+      { model_id: 4, model_name: 'M3 CSL', make_id: 4 },
+      { model_id: 5, model_name: 'Auto Union V16 Streamline', make_id: 5 },
+      { model_id: 6, model_name: 'Skyline GTR (R34)', make_id: 6 },
     ];
 
     for (const model of carmodelsData) {
@@ -126,8 +134,113 @@ export const seedDatabase = async () => {
         tax_status_id: 1,
         wheel_plan_id: 11,
         power_output: 384,
+        price: 40000
       },
-      
+      {
+        registration_number: 'GT40 FRD',
+        make_id: 2,
+        model_id: 2,
+        color: 'Blue',
+        engine_size: 1500,
+        year_of_manufacture: 1966,
+        date_of_manufacture: '1966-05-12',
+        co2_emissions: 120,
+        tax_due_date: '2024-10-01',
+        date_of_last_v5c_issued: '2023-03-20',
+        first_used_date: '1966-06-12',
+        marked_for_export: false,
+        has_outstanding_recall: false,
+        type_approval: 'EU6',
+        fuel_type_id: 2,
+        tax_status_id: 1,
+        wheel_plan_id: 3,
+        power_output: 450,
+        price: 2500000
+      },
+      {
+        registration_number: 'AU21 JKL',
+        make_id: 3,
+        model_id: 3,
+        color: 'Grey',
+        engine_size: 2000,
+        year_of_manufacture: 2004,
+        date_of_manufacture: '2004-03-01',
+        co2_emissions: 130,
+        tax_due_date: '2004-04-01',
+        date_of_last_v5c_issued: '2004-11-15',
+        first_used_date: '2004-03-15',
+        marked_for_export: false,
+        has_outstanding_recall: false,
+        type_approval: 'EU6d',
+        fuel_type_id: 3,
+        tax_status_id: 1,
+        wheel_plan_id: 3,
+        power_output: 280,
+        price: 15000
+      },
+      {
+        registration_number: 'BT70 MNO',
+        make_id: 4,
+        model_id: 4,
+        color: 'White',
+        engine_size: 2000,
+        year_of_manufacture: 2003,
+        date_of_manufacture: '2003-07-10',
+        co2_emissions: 145,
+        tax_due_date: '2003-08-01',
+        date_of_last_v5c_issued: '2023-07-10',
+        first_used_date: '2020-07-15',
+        marked_for_export: false,
+        has_outstanding_recall: false,
+        type_approval: 'EU6d-TEMP',
+        fuel_type_id: 2,
+        tax_status_id: 1,
+        wheel_plan_id: 3,
+        power_output: 400,
+        price: 80000
+      },
+      {
+        registration_number: 'VE16 AUD',
+        make_id: 5,
+        model_id: 5,
+        color: 'Silver',
+        engine_size: 6000,
+        year_of_manufacture: 1937,
+        date_of_manufacture: '1937-02-20',
+        co2_emissions: 1100,
+        tax_due_date: '1944-03-01',
+        date_of_last_v5c_issued: '2007-09-10',
+        first_used_date: '1937-03-15',
+        marked_for_export: false,
+        has_outstanding_recall: false,
+        type_approval: 'EU6',
+        fuel_type_id: 3,
+        tax_status_id: 1,
+        wheel_plan_id: 3,
+        power_output: 520,
+        price: 1200000000
+      },
+      {
+        registration_number: 'DX71 STU',
+        make_id: 6,
+        model_id: 6,
+        color: 'Sky blue',
+        engine_size: 1300,
+        year_of_manufacture: 2021,
+        date_of_manufacture: '1999-11-05',
+        co2_emissions: 125,
+        tax_due_date: '2024-12-01',
+        date_of_last_v5c_issued: '2023-07-22',
+        first_used_date: '2021-12-10',
+        marked_for_export: false,
+        has_outstanding_recall: false,
+        type_approval: 'EU6d',
+        fuel_type_id: 2,
+        tax_status_id: 1,
+        wheel_plan_id: 3,
+        power_output: 276,
+        price: 110000
+      },
     ];
 
     for (const car of carsData) {
@@ -150,10 +263,11 @@ export const seedDatabase = async () => {
           fuel_type_id,
           tax_status_id,
           wheel_plan_id,
-          power_output
+          power_output,
+          price
         ) VALUES (
           $1, $2, $3, $4, $5, $6, $7, $8, $9, $10,
-          $11, $12, $13, $14, $15, $16, $17, $18
+          $11, $12, $13, $14, $15, $16, $17, $18, $19
         );`,
         [
           car.registration_number,
@@ -174,6 +288,7 @@ export const seedDatabase = async () => {
           car.tax_status_id,
           car.wheel_plan_id,
           car.power_output,
+          car.price
         ]
       );
     }
@@ -196,7 +311,7 @@ export const seedDatabase = async () => {
     }
 
    
-    // await pool.end(); commented out for jest afterAll function to run smoothly
+    await pool.end(); // originally commented out for jest afterAll function to run smoothly
   }
 };
 

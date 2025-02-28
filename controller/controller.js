@@ -1,11 +1,11 @@
 import { fetchCars } from '../model/model.js';
-export const getCars = (req, res) => {
-    fetchCars()
-        .then((cars) => {
-        res.status(200).json({ cars });
-    })
-        .catch((error) => {
+export const getCars = async (req, res) => {
+    try {
+        const cars = await fetchCars();
+        res.json(cars);
+    }
+    catch (error) {
         console.error('Error fetching cars:', error);
-        res.status(500).json({ error: 'Failed to fetch cars.' });
-    });
+        res.status(500).json({ message: 'Internal server error' });
+    }
 };

@@ -2,6 +2,7 @@ import pg from 'pg';
 
 const { Pool } = pg;
 
+
 //postgres credentials go here
 const pool = new pg.Pool({
   host: 'localhost',
