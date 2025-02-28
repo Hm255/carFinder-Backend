@@ -1,6 +1,6 @@
 import pg from 'pg';
 const { Pool } = pg;
-//postgres credentials go here
+//postgres credentials go into the pool
 const pool = new pg.Pool({
     host: 'localhost',
     user: 'postgres',
