@@ -5,7 +5,7 @@
   "description": "",
   "main": "model.js",
   "scripts": {
-    "test":"tsc --project tsconfig.test.json && jest --coverage",
+    "test": "tsc --project tsconfig.test.json && jest --coverage",
     "seed": "node ./db/seed.js",
     "build": "tsc",
     "ts-test": "npx tsc --noEmit -w -p .",
@@ -28,6 +28,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
+    "path": "^0.12.7",
     "pg": "^8.13.3",
     "pg-format": "^1.0.4"
   },
