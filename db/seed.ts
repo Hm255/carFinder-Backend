@@ -40,12 +40,13 @@ export const seedDatabase = async () => {
 
     
     const carmodelsData = [
-      { model_id: 1, model_name: 'Tesla Model Y long range AWD', make_id: 1 },
+      { model_id: 1, model_name: 'Model Y long range AWD', make_id: 1 },
       { model_id: 2, model_name: 'GT40', make_id: 2 },
       { model_id: 3, model_name: 'Golf R32', make_id: 3 },
       { model_id: 4, model_name: 'M3 CSL', make_id: 4 },
       { model_id: 5, model_name: 'Auto Union V16 Streamline', make_id: 5 },
       { model_id: 6, model_name: 'Skyline GTR (R34)', make_id: 6 },
+      { model_id: 7, model_name: 'Model Y Performance', make_id: 1 },
     ];
 
     for (const model of carmodelsData) {
@@ -241,6 +242,27 @@ export const seedDatabase = async () => {
         power_output: 276,
         price: 110000
       },
+      {
+        registration_number: 'TESLA11',
+        make_id: 1,
+        model_id: 7,
+        color: 'Red',
+        engine_size: 0,
+        year_of_manufacture: 2023,
+        date_of_manufacture: '2023-07-15',
+        co2_emissions: 0,
+        tax_due_date: '2024-07-15',
+        date_of_last_v5c_issued: '2023-07-15',
+        first_used_date: '2023-07-15',
+        marked_for_export: false,
+        has_outstanding_recall: false,
+        type_approval: 'M1',
+        fuel_type_id: 1,
+        tax_status_id: 1,
+        wheel_plan_id: 11,
+        power_output: 426,
+        price: 60000
+      }
     ];
 
     for (const car of carsData) {
