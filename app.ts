@@ -1,6 +1,6 @@
-// backend/app.ts
+
 import express, { Request, Response, NextFunction } from 'express';
-import { getCars } from './controller/controller.js'; // Correct relative path
+import { getCars } from './controller/controller.js'; 
 import cors from 'cors';
 import path from 'path';
 
@@ -9,20 +9,20 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// --- API Routes ---
+
 app.get('/cars', getCars);
 
-// --- Serve Static Files (Frontend) ---
+
 const __dirname = path.resolve();
-app.use(express.static(path.join(__dirname, '../frontend/public'))); // Serve from frontend/public
+app.use(express.static(path.join(__dirname, '../frontend')));
 
 
-// --- Catch-all Route for SPA ---
+
 app.get('*', (req: Request, res: Response) => {
-  res.sendFile(path.join(__dirname, '../frontend', 'index.html')); // Serve index.html
+  res.sendFile(path.join(__dirname, '../frontend', 'index.html')); 
 });
 
-// --- Error Handling ---
+
 app.all('/*', (req: Request, res: Response) => {
     res.status(404).send({ msg: 'Item does not exist' });
   });
@@ -42,7 +42,7 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
 
 // server error handling middleware
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
-  console.error(err); // Log the error to the console
+  console.error(err); 
   res.status(500).send({ msg: "Something went wrong" });
 });
 

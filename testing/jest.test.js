@@ -9,7 +9,7 @@ beforeEach(async () => {
     await seedDatabase();
 });
 afterAll(async () => {
-    // Close the database pool after all tests have been run
+    // Close the database pool after all tests have been run to stop leaks
     await pool.end();
 });
 describe('GET /cars', () => {

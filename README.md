@@ -1,14 +1,20 @@
 # carFinder-Backend
 
-## DVSA api info
+## tech-stack
 
-use a non organization account to register for use with this API
+This application is made using TypeScript, PSQL, Node and Express.
 
-### Insomnia
+## what is it?
 
-add the API key into the header
+It hosts a highly categoricalized local car database with many filters.
 
-Add the bearer token into the header also (the key should be 'Authorization' and the bearer token should be 'Bearer {token}')
+## how can this be used
+
+It can be used to render the data within it to a frontend that intends to use it. Currently it holds 7 cars but it is ready for any vehicle legal in the UK (including bikes and trucks), like this one written in Vue + TS using Vite! https://github.com/Hm255/carFinder-frontend
+
+
+
+
 
 
 
