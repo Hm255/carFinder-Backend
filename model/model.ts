@@ -1,5 +1,7 @@
 import db from '../db/connection.js';
 
+//psql types given below next to columns for ease of picturing the cars table properties
+
 export interface Car {
   registration_number: string;     // character(7)
   color: string;                   // character varying(30)
