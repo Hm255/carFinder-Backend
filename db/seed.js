@@ -1,5 +1,5 @@
-import pool from './connection.js';
-export const seedDatabase = async () => {
+import pool from './connection.js'; // Import the connection pool
+export const seedDatabase = async (withinTest = false) => {
     let client;
     try {
         client = await pool.connect();
@@ -225,29 +225,29 @@ export const seedDatabase = async () => {
         ];
         for (const car of carsData) {
             await client.query(`INSERT INTO cars (
-          registration_number,
-          make_id,
-          model_id,
-          color,
-          engine_size,
-          year_of_manufacture,
-          date_of_manufacture,
-          co2_emissions,
-          tax_due_date,
-          date_of_last_v5c_issued,
-          first_used_date,
-          marked_for_export,
-          has_outstanding_recall,
-          type_approval,
-          fuel_type_id,
-          tax_status_id,
-          wheel_plan_id,
-          power_output,
-          price
-        ) VALUES (
-          $1, $2, $3, $4, $5, $6, $7, $8, $9, $10,
-          $11, $12, $13, $14, $15, $16, $17, $18, $19
-        );`, [
+            registration_number,
+            make_id,
+            model_id,
+            color,
+            engine_size,
+            year_of_manufacture,
+            date_of_manufacture,
+            co2_emissions,
+            tax_due_date, 
+            date_of_last_v5c_issued,
+            first_used_date,
+            marked_for_export, 
+            has_outstanding_recall,
+            type_approval,
+            fuel_type_id, 
+            tax_status_id,
+            wheel_plan_id,
+            power_output,
+            price
+          ) VALUES (
+            $1, $2, $3, $4, $5, $6, $7, $8, $9, $10,
+            $11, $12, $13, $14, $15, $16, $17, $18, $19
+          );`, [
                 car.registration_number,
                 car.make_id,
                 car.model_id,
@@ -270,19 +270,22 @@ export const seedDatabase = async () => {
             ]);
         }
         await client.query('COMMIT');
-        console.log('Database seeded successfully!');
+        console.log('Database seeded successfully!'); // This will print
     }
     catch (error) {
         console.error('Error seeding the database:', error);
         if (client) {
             await client.query('ROLLBACK');
         }
+        throw error; // Re-throw
     }
     finally {
         if (client) {
-            client.release();
+            client.release(); // Always release
         }
-        await pool.end(); // originally commented out for jest afterAll function to run smoothly
+        if (!withinTest) {
+            console.log("This is not a test");
+            await pool.end();
+        }
     }
 };
-seedDatabase();
