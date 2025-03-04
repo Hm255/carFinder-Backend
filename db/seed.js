@@ -270,18 +270,18 @@ export const seedDatabase = async (withinTest = false) => {
             ]);
         }
         await client.query('COMMIT');
-        console.log('Database seeded successfully!'); // This will print
+        console.log('Database seeded successfully!');
     }
     catch (error) {
         console.error('Error seeding the database:', error);
         if (client) {
             await client.query('ROLLBACK');
         }
-        throw error; // Re-throw
+        throw error;
     }
     finally {
         if (client) {
-            client.release(); // Always release
+            client.release();
         }
         if (!withinTest) {
             console.log("This is not a test");
