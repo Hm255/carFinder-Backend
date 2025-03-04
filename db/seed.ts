@@ -1,4 +1,4 @@
-import pool from './connection.js';  // Import the connection pool
+import pool from './connection.js';  
 
 export const seedDatabase = async (withinTest: boolean = false) => {
   let client;
