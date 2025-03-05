@@ -11,7 +11,7 @@ beforeEach(async () => {
   await seedDatabase(true);
 });
 
-describe('GET /cars', () => {
+describe('GET /api/cars', () => {
   it('should return a list of cars with complete details', async () => {
     const response = await request(app).get('/cars');
 
