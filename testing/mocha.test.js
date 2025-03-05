@@ -1,4 +1,3 @@
-// testing/mocha.test.ts
 import * as chai from 'chai';
 import request from 'supertest';
 import app from '../app.js';
@@ -125,11 +124,11 @@ describe('GET /cars', () => {
                 color: 'Sky blue',
                 engine_size: 1300,
                 year_of_manufacture: 2021,
-                date_of_manufacture: '1999-11-05T00:00:00.000Z', //Corrected
+                date_of_manufacture: '1999-11-05T00:00:00.000Z',
                 co2_emissions: 125,
-                tax_due_date: '2024-12-01T00:00:00.000Z', //Corrected
-                date_of_last_v5c_issued: '2023-07-21T23:00:00.000Z', //Corrected
-                first_used_date: '2021-12-10T00:00:00.000Z', //Corrected
+                tax_due_date: '2024-12-01T00:00:00.000Z',
+                date_of_last_v5c_issued: '2023-07-21T23:00:00.000Z',
+                first_used_date: '2021-12-10T00:00:00.000Z',
                 marked_for_export: false,
                 has_outstanding_recall: false,
                 type_approval: 'EU6d',

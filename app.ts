@@ -12,7 +12,7 @@ app.use(cors());
 app.use(express.json());
 
 
-app.get('/cars', getCars);
+app.get('/api/cars', getCars);
 
 
 const __filename = fileURLToPath(import.meta.url);
