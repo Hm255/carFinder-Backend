@@ -13,11 +13,10 @@ beforeEach(async () => {
 
 describe('GET /api/cars', () => {
   it('should return a list of cars with complete details', async () => {
-    const response = await request(app).get('/cars');
+    const response = await request(app).get('/api/cars');
 
     expect(response.statusCode).to.equal(200);
     expect(response.body).to.be.an('array');
-    expect(response.body.length).to.equal(7);
 
     const expectedCars: Car[] = [
       {

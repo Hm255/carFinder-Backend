@@ -30,6 +30,5 @@ export const fetchCars = async () => {
       LEFT JOIN wheelplans wp ON c.wheel_plan_id = wp.wheel_plan_id;
   `;
     const { rows } = await db.query(query);
-    console.log(rows);
     return rows;
 };

@@ -56,6 +56,5 @@ export const fetchCars = async (): Promise<Car[]> => {
       LEFT JOIN wheelplans wp ON c.wheel_plan_id = wp.wheel_plan_id;
   `;
   const { rows }: { rows: Car[] } = await db.query(query);
-  console.log(rows);
   return rows;
 };
