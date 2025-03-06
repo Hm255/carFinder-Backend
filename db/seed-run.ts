@@ -1,4 +1,3 @@
-
 import { seedDatabase } from './seed.js';
 
 (async () => {

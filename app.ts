@@ -1,4 +1,3 @@
-
 import express, { Request, Response, NextFunction } from 'express';
 import { getCars } from './controller/controller.js'; 
 import cors from 'cors';
