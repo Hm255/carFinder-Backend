@@ -10,7 +10,7 @@ It hosts a highly categoricalized local car database with many filters.
 
 ## how can this be used
 
-It can be used to render the data within it to a frontend that intends to use it. Currently it holds 7 cars but it is ready for any vehicle legal in the UK (including bikes and trucks), like this one written in Vue + TS using Vite! https://github.com/Hm255/carFinder-frontend
+It can be used to render the data within it to a frontend that intends to use it. Currently it holds 10 cars but it is ready for any vehicle legal in the UK (including bikes and trucks), like this one written in Vue + TS using Vite! https://github.com/Hm255/carFinder-frontend
 
 
 
