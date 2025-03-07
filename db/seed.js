@@ -18,6 +18,7 @@ export const seedDatabase = async (withinTest = false) => {
             { make_id: 4, make_name: 'BMW' },
             { make_id: 5, make_name: 'Audi' },
             { make_id: 6, make_name: 'Nissan' },
+            { make_id: 7, make_name: 'Renault' },
         ];
         for (const make of carmakesData) {
             await client.query(`INSERT INTO carmakes (make_id, make_name) VALUES ($1, $2);`, [make.make_id, make.make_name]);
@@ -30,6 +31,9 @@ export const seedDatabase = async (withinTest = false) => {
             { model_id: 5, model_name: 'Auto Union V16 Streamline', make_id: 5 },
             { model_id: 6, model_name: 'Skyline GTR (R34)', make_id: 6 },
             { model_id: 7, model_name: 'Model Y Performance', make_id: 1 },
+            { model_id: 8, model_name: 'Beetle (type 1)', make_id: 3 },
+            { model_id: 9, model_name: 'Clio evolution (TCe 90 MY25)', make_id: 7 },
+            { model_id: 10, model_name: 'Clio 2nd generation', make_id: 7 }
         ];
         for (const model of carmodelsData) {
             await client.query(`INSERT INTO carmodels (model_id, model_name, make_id) VALUES ($1, $2, $3);`, [model.model_id, model.model_name, model.make_id]);
@@ -38,6 +42,7 @@ export const seedDatabase = async (withinTest = false) => {
             { fuel_type_id: 1, fuel_type_name: 'ELECTRICITY' },
             { fuel_type_id: 2, fuel_type_name: 'PETROL' },
             { fuel_type_id: 3, fuel_type_name: 'DIESEL' },
+            { fuel_type_id: 4, fuel_type_name: 'HYBRID' },
         ];
         for (const fuel of fueltypesData) {
             await client.query(`INSERT INTO fueltypes (fuel_type_id, fuel_type_name) VALUES ($1, $2);`, [fuel.fuel_type_id, fuel.fuel_type_name]);
@@ -221,6 +226,69 @@ export const seedDatabase = async (withinTest = false) => {
                 wheel_plan_id: 11,
                 power_output: 426,
                 price: 60000
+            },
+            {
+                registration_number: 'B33TLEE',
+                make_id: 3,
+                model_id: 8,
+                color: 'white',
+                engine_size: 985,
+                year_of_manufacture: 1938,
+                date_of_manufacture: '1938-11-05',
+                co2_emissions: 125,
+                tax_due_date: '2024-12-01',
+                date_of_last_v5c_issued: '2023-07-22',
+                first_used_date: '1975-12-10',
+                marked_for_export: false,
+                has_outstanding_recall: false,
+                type_approval: 'EU6d',
+                fuel_type_id: 2,
+                tax_status_id: 1,
+                wheel_plan_id: 3,
+                power_output: 23,
+                price: 4000
+            },
+            {
+                registration_number: 'R3NCL10',
+                make_id: 7,
+                model_id: 9,
+                color: 'Silver',
+                engine_size: 999,
+                year_of_manufacture: 2024,
+                date_of_manufacture: '2024-11-05',
+                co2_emissions: 125,
+                tax_due_date: '2024-12-01',
+                date_of_last_v5c_issued: '2023-07-22',
+                first_used_date: '1975-12-10',
+                marked_for_export: false,
+                has_outstanding_recall: false,
+                type_approval: 'EU6',
+                fuel_type_id: 4,
+                tax_status_id: 1,
+                wheel_plan_id: 3,
+                power_output: 90,
+                price: 18595
+            },
+            {
+                registration_number: 'R3CL104',
+                make_id: 7,
+                model_id: 10,
+                color: 'Silver',
+                engine_size: 1200,
+                year_of_manufacture: 2004,
+                date_of_manufacture: '2004-11-05',
+                co2_emissions: 125,
+                tax_due_date: '2024-12-01',
+                date_of_last_v5c_issued: '2023-07-22',
+                first_used_date: '1975-12-10',
+                marked_for_export: false,
+                has_outstanding_recall: false,
+                type_approval: 'EU6',
+                fuel_type_id: 2,
+                tax_status_id: 1,
+                wheel_plan_id: 3,
+                power_output: 74,
+                price: 17000
             }
         ];
         for (const car of carsData) {
