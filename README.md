@@ -6,7 +6,7 @@ This application is made using TypeScript, PSQL, Node and Express.
 
 ## what is it?
 
-It hosts a highly categoricalized local car database with many filters.
+It hosts a highly filterable local car database with many filters.
 
 ## how can this be used
 
