@@ -12,9 +12,6 @@ It hosts a highly filterable local car database with many filters.
 
 It can be used to render the data within it to a frontend that intends to use it. Currently it holds 10 cars but it is ready for any vehicle legal in the UK (including bikes and trucks), like this one written in Vue + TS using Vite! https://github.com/Hm255/carFinder-frontend
 
+## Where is this site hosted
 
-
-
-
-
-
+This will be hosted at https://timely-toffee-58d679.netlify.app (an unknown error from netlify stops me changing the site name to carFinder)
