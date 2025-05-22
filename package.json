@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "type": "module",
   "description": "",
-  "main": "app.js",
+  "main": "listen.js",
   "scripts": {
     "test": "mocha --config mocha.config.cjs",
     "test:watch": "mocha --watch",
     "seed": "node ./db/seed-run.js",
+    "seed-prod": "NODE_ENV=production npm run seed",
     "build": "tsc",
     "start": "node listen.js"
   },
