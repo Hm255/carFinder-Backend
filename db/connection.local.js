@@ -1,12 +1,12 @@
-import pg from 'pg';
+import pg from "pg";
 const { Pool } = pg;
 //postgres credentials go into the pool
 const pool = new pg.Pool({
-    host: 'localhost',
-    user: 'postgres',
+    host: "localhost",
+    user: "postgres",
     port: 5432,
-    password: 'postgres',
-    database: 'carFinder',
+    password: "postgres",
+    database: "carFinder",
     max: 20,
     idleTimeoutMillis: 30000,
     connectionTimeoutMillis: 2000,
