@@ -1,4 +1,4 @@
-import pool from "./connection.local.js";
+import pool from "../connection.js";
 export const seedDatabase = async (withinTest = false) => {
     let client;
     try {
