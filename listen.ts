@@ -1,8 +1,8 @@
 import dotenv from "dotenv";
-import app from "./app.js";
 dotenv.config({
   path: process.env.NODE_ENV === "production" ? ".env.production" : ".env",
 });
+import app from "./app.js";
 
 const { PORT = 9090 } = process.env;
 

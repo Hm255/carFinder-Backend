@@ -1,6 +1,6 @@
 import { Pool, PoolConfig } from "pg";
 
-const ENV = process.env.NODE_ENV || "development";
+const ENV = process.env.NODE_ENV 
 
 if (!process.env.PGDATABASE && !process.env.DATABASE_URL) {
   console.log(process.env.PGDATABASE, process.env.DATABASE_URL);
