@@ -6,17 +6,19 @@ import { fileURLToPath } from "url";
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.get("/api/cars", getCars);
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+app.get("/api/cars", getCars);
+app.all("/api/:path(.*)", (req, res) => {
+    res.status(404).json({ msg: "Item does not exist" });
+});
 app.use(express.static(path.join(__dirname, "../frontend")));
-app.get("*", (req, res) => {
+app.get("/:path(.*)", (req, res, next) => {
+    if (req.path.startsWith("/api/"))
+        return next();
     res.sendFile(path.join(__dirname, "../frontend", "index.html"));
 });
-app.all("/*", (req, res) => {
-    res.status(404).send({ msg: "Item does not exist" });
-});
-// PostgreSQL error handling
+// PostgreSQL error handling 
 app.use((err, req, res, next) => {
     if (err.code === "22P02") {
         res.status(400).send({ msg: "Invalid type (type is wrong)" });
@@ -31,7 +33,7 @@ app.use((err, req, res, next) => {
         next(err);
     }
 });
-// server error handling middleware
+// Server error handling middleware
 app.use((err, req, res, next) => {
     console.error(err);
     res.status(500).send({ msg: "Something went wrong" });
