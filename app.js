@@ -9,11 +9,11 @@ app.use(express.json());
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 app.get("/api/cars", getCars);
-app.all("/api/*", (req, res) => {
+app.all("/api/{*fail}", (req, res) => {
     res.status(404).json({ msg: "Item does not exist" });
 });
 app.use(express.static(path.join(__dirname, "../frontend")));
-app.get("*", (req, res, next) => {
+app.get("{*frontend}", (req, res, next) => {
     if (req.path.startsWith("/api/"))
         return next();
     return res.sendFile(path.join(__dirname, "../frontend", "index.html"));

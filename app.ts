@@ -14,13 +14,13 @@ const __dirname = dirname(__filename);
 
 app.get("/api/cars", getCars);
 
-app.all("/api/*", (req: Request, res: Response) => {
+app.all("/api/{*fail}", (req: Request, res: Response) => {
   res.status(404).json({ msg: "Item does not exist" });
 });
 
 app.use(express.static(path.join(__dirname, "../frontend")));
 
-app.get("*", (req: Request, res: Response, next: NextFunction) => {
+app.get("{*frontend}", (req: Request, res: Response, next: NextFunction) => {
   if (req.path.startsWith("/api/")) return next();
   return res.sendFile(path.join(__dirname, "../frontend", "index.html"));
 });
