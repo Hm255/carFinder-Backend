@@ -4,6 +4,60 @@ export const seedDatabase = async (withinTest = false) => {
     try {
         client = await pool.connect();
         await client.query("BEGIN");
+        await client.query(`
+CREATE TABLE IF NOT EXISTS carmakes (
+    make_id INT PRIMARY KEY,
+    make_name TEXT NOT NULL UNIQUE
+);
+`);
+        await client.query(`
+CREATE TABLE IF NOT EXISTS carmodels (
+    model_id INT PRIMARY KEY,
+    model_name TEXT NOT NULL,
+    make_id INT NOT NULL REFERENCES carmakes(make_id) ON DELETE CASCADE
+);
+`);
+        await client.query(`
+CREATE TABLE IF NOT EXISTS fueltypes (
+    fuel_type_id INT PRIMARY KEY,
+    fuel_type_name TEXT NOT NULL UNIQUE
+);
+`);
+        await client.query(`
+CREATE TABLE IF NOT EXISTS taxstatuses (
+    tax_status_id INT PRIMARY KEY,
+    tax_status_name TEXT NOT NULL
+);
+`);
+        await client.query(`
+CREATE TABLE IF NOT EXISTS wheelplans (
+    wheel_plan_id INT PRIMARY KEY,
+    wheel_plan_name TEXT NOT NULL UNIQUE
+);
+`);
+        await client.query(`
+CREATE TABLE IF NOT EXISTS cars (
+    registration_number TEXT PRIMARY KEY,
+    make_id INT NOT NULL REFERENCES carmakes(make_id) ON DELETE CASCADE,
+    model_id INT NOT NULL REFERENCES carmodels(model_id) ON DELETE CASCADE,
+    color TEXT NOT NULL,
+    engine_size INT NOT NULL,
+    year_of_manufacture INT NOT NULL,
+    date_of_manufacture DATE NOT NULL,
+    co2_emissions INT NOT NULL,
+    tax_due_date DATE NOT NULL,
+    date_of_last_v5c_issued DATE NOT NULL,
+    first_used_date DATE NOT NULL,
+    marked_for_export BOOLEAN NOT NULL,
+    has_outstanding_recall BOOLEAN NOT NULL,
+    type_approval TEXT NOT NULL,
+    fuel_type_id INT NOT NULL REFERENCES fueltypes(fuel_type_id),
+    tax_status_id INT NOT NULL REFERENCES taxstatuses(tax_status_id),
+    wheel_plan_id INT NOT NULL REFERENCES wheelplans(wheel_plan_id),
+    power_output INT NOT NULL,
+    price NUMERIC(12,2) NOT NULL
+);
+`);
         await client.query("SET CONSTRAINTS ALL DEFERRED;");
         await client.query("TRUNCATE TABLE cars RESTART IDENTITY CASCADE;");
         await client.query("TRUNCATE TABLE carmodels RESTART IDENTITY CASCADE;");
