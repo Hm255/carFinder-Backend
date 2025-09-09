@@ -1,3 +1,5 @@
+import dns from 'dns'
+dns.setDefaultResultOrder('verbatim')
 import dotenv from "dotenv";
 import app from "../app.js";
 import { testConnection } from "./connection.js";
