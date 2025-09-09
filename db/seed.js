@@ -1,6 +1,8 @@
 import pool from "./connection.js";
 export const seedDatabase = async (withinTest = false) => {
     let client;
+    console.log('NODE_ENV:', process.env.NODE_ENV);
+    console.log('DATABASE_URL:', process.env.DATABASE_URL);
     try {
         client = await pool.connect();
         await client.query("BEGIN");
@@ -55,7 +57,7 @@ CREATE TABLE IF NOT EXISTS cars (
     tax_status_id INT NOT NULL REFERENCES taxstatuses(tax_status_id),
     wheel_plan_id INT NOT NULL REFERENCES wheelplans(wheel_plan_id),
     power_output INT NOT NULL,
-    price NUMERIC(12,2) NOT NULL
+    price INT NOT NULL
 );
 `);
         await client.query("SET CONSTRAINTS ALL DEFERRED;");

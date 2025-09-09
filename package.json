@@ -7,8 +7,8 @@
   "scripts": {
     "test": "mocha --config mocha.config.cjs",
     "test:watch": "mocha --watch",
-    "seed": "node ./db/seed-run.js",
-    "seed-prod": "set NODE_ENV=production npm run seed",
+    "seed": "cross-env NODE_ENV=development node ./db/seed-run.js",
+    "seed-prod": "cross-env NODE_ENV=production node ./db/seed-run.js",
     "build": "tsc",
     "start": "node listen.js"
   },
