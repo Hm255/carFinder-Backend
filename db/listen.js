@@ -1,5 +1,5 @@
 import dotenv from "dotenv";
-import app from "../app.jss";
+import app from "../app.js";
 import { testConnection } from "./connection.js";
 dotenv.config({
     path: process.env.NODE_ENV === "production" ? ".env.production" : ".env",
