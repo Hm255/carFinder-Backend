@@ -3,9 +3,7 @@ import dotenv from 'dotenv';
 import fs from 'fs';
 import path from 'path';
 import { parse } from 'pg-connection-string';
-// Directory where your .env files live
-const envDir = __dirname; // project/db/
-// Pick env file based on NODE_ENV, with fallbacks
+const envDir = __dirname;
 const envName = process.env.NODE_ENV || 'development';
 let envPath = path.join(envDir, `.env.${envName}`);
 if (!fs.existsSync(envPath)) {
@@ -19,21 +17,17 @@ if (!fs.existsSync(envPath)) {
 if (!fs.existsSync(envPath)) {
     throw new Error(`❌ No .env file found in ${envDir}`);
 }
-// Load the env file
 dotenv.config({ path: envPath });
 console.log(`✅ Loaded environment variables from ${envPath}`);
-// Validate DATABASE_URL
 if (!process.env.DATABASE_URL) {
     throw new Error('❌ DATABASE_URL not set in environment variables');
 }
 const isProduction = process.env.NODE_ENV === 'production';
-// Create the pool
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
     ssl: isProduction ? { rejectUnauthorized: false } : false,
     max: isProduction ? 2 : undefined
 });
-// Optional: quick connection test
 export async function testConnection() {
     try {
         const res = await pool.query('SELECT NOW()');
