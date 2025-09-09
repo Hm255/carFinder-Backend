@@ -1,21 +1,58 @@
-import { Pool, PoolConfig } from "pg";
+import { Pool } from 'pg';
+import dotenv from 'dotenv';
+import fs from 'fs';
+import path from 'path';
+import { parse } from 'pg-connection-string';
 
-const ENV = process.env.NODE_ENV || "development";
+// Directory where your .env files live
+const envDir = __dirname; // project/db/
 
-if (!process.env.PGDATABASE && !process.env.DATABASE_URL) {
-  console.log(process.env.PGDATABASE, process.env.DATABASE_URL);
-  throw new Error("PGDATABASE or DATABASE_URL not set");
+// Pick env file based on NODE_ENV, with fallbacks
+const envName = process.env.NODE_ENV || 'development';
+let envPath = path.join(envDir, `.env.${envName}`);
+
+if (!fs.existsSync(envPath)) {
+  console.warn(`⚠️  ${envPath} not found. Trying .env.production...`);
+  envPath = path.join(envDir, '.env.production');
 }
 
-interface dbconfig {
-  connectionString?: string;
-  max?: number;
-}
-const config: dbconfig = {};
-
-if (ENV === "production") {
-  config.connectionString = process.env.DATABASE_URL;
-  config.max = 2;
+if (!fs.existsSync(envPath)) {
+  console.warn(`⚠️  .env.production not found. Trying .env...`);
+  envPath = path.join(envDir, '.env');
 }
 
-export default new Pool(config);
+if (!fs.existsSync(envPath)) {
+  throw new Error(`❌ No .env file found in ${envDir}`);
+}
+
+// Load the env file
+dotenv.config({ path: envPath });
+console.log(`✅ Loaded environment variables from ${envPath}`);
+
+// Validate DATABASE_URL
+if (!process.env.DATABASE_URL) {
+  throw new Error('❌ DATABASE_URL not set in environment variables');
+}
+
+const isProduction = process.env.NODE_ENV === 'production';
+
+// Create the pool
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: isProduction ? { rejectUnauthorized: false } : false,
+  max: isProduction ? 2 : undefined
+});
+
+// Optional: quick connection test
+export async function testConnection() {
+  try {
+    const res = await pool.query<{ now: string }>('SELECT NOW()');
+    const parsed = parse(process.env.DATABASE_URL!);
+    console.log(`✅ Connected to ${parsed.database} at ${parsed.host} — ${res.rows[0].now}`);
+  } catch (err) {
+    console.error('❌ Database connection failed:', err);
+    process.exit(1);
+  }
+}
+
+export default pool;
