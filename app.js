@@ -7,7 +7,8 @@ import fs from "fs";
 const app = express();
 const allowedOrigins = [
     'http://localhost:5173',
-    'https://timely-toffee-58d679.netlify.app/'
+    'https://timely-toffee-58d679.netlify.app/',
+    'https://carfinder-backend.onrender.com/'
 ];
 app.use(cors({
     origin: (origin, callback) => {
