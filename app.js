@@ -5,7 +5,20 @@ import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 import fs from "fs";
 const app = express();
-app.use(cors());
+const allowedOrigins = [
+    'http://localhost:5173',
+    'https://your-netlify-site.netlify.app'
+];
+app.use(cors({
+    origin: (origin, callback) => {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        }
+        else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    }
+}));
 app.use(express.json());
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);

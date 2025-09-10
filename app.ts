@@ -7,19 +7,31 @@ import fs from "fs";
 
 const app = express();
 
-app.use(cors());
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://your-netlify-site.netlify.app' 
+];
+
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
+}));
+
 app.use(express.json());
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-
 
 app.get("/api/cars", getCars);
 
 app.all("/api/{*fail}", (req: Request, res: Response) => {
   res.status(404).json({ msg: "Item does not exist" });
 });
-
 
 const frontendPath = path.join(__dirname, "../frontend");
 if (fs.existsSync(frontendPath)) {
