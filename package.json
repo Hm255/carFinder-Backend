@@ -3,14 +3,14 @@
   "version": "1.0.0",
   "type": "module",
   "description": "This application is made using TypeScript, PSQL, Node and Express.",
-  "main": "./db/listen.js",
+  "main": "listen.js",
   "scripts": {
     "test": "mocha --config mocha.config.cjs",
     "test:watch": "mocha --watch",
     "seed": "cross-env NODE_ENV=development node ./db/seed-run.js",
     "seed-prod": "cross-env NODE_ENV=production node ./db/seed-run.js",
     "build": "tsc",
-    "start": "node ./db/listen.js"
+    "start": "node listen.js"
   },
   "repository": {
     "type": "git",
