@@ -17,7 +17,9 @@ app.use(cors({
         else {
             callback(new Error('Not allowed by CORS'));
         }
-    }
+    },
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Origin', 'Content-Type', 'Accept', 'Authorization']
 }));
 app.use(express.json());
 const __filename = fileURLToPath(import.meta.url);
