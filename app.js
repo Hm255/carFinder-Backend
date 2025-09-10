@@ -7,7 +7,7 @@ import fs from "fs";
 const app = express();
 const allowedOrigins = [
     'http://localhost:5173',
-    'https://your-netlify-site.netlify.app'
+    'https://timely-toffee-58d679.netlify.app/'
 ];
 app.use(cors({
     origin: (origin, callback) => {
