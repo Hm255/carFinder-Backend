@@ -3,6 +3,7 @@ import { getCars } from "./controller/controller.js";
 import cors from "cors";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
+import fs from "fs";
 
 const app = express();
 
@@ -12,19 +13,32 @@ app.use(express.json());
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+
 app.get("/api/cars", getCars);
 
 app.all("/api/{*fail}", (req: Request, res: Response) => {
   res.status(404).json({ msg: "Item does not exist" });
 });
 
-app.use(express.static(path.join(__dirname, "../frontend")));
 
-app.get("{*frontend}", (req: Request, res: Response, next: NextFunction) => {
-  if (req.path.startsWith("/api/")) return next();
-  return res.sendFile(path.join(__dirname, "../frontend", "index.html"));
-});
-// PostgreSQL error handling
+const frontendPath = path.join(__dirname, "../frontend");
+if (fs.existsSync(frontendPath)) {
+  console.log(`✅ Serving static frontend from ${frontendPath}`);
+  app.use(express.static(frontendPath));
+
+  app.get("*", (req: Request, res: Response, next: NextFunction) => {
+    if (req.path.startsWith("/api/")) return next();
+    return res.sendFile(path.join(frontendPath, "index.html"));
+  });
+} else {
+  console.warn("⚠️ No frontend folder found — skipping static file serving");
+  
+  app.get("/", (req: Request, res: Response) => {
+    res.send("Backend is running");
+  });
+}
+
+// postgreSQL error handling
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   if (err.code === "22P02") {
     res.status(400).send({ msg: "Invalid type (type is wrong)" });
@@ -37,7 +51,7 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   }
 });
 
-// Server error handling 
+
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   console.error(err);
   res.status(500).send({ msg: "Something went wrong" });
