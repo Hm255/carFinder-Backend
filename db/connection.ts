@@ -12,6 +12,9 @@ if (!process.env.DATABASE_URL) {
 
 const isProduction = process.env.NODE_ENV === 'production';
 
+
+const parsed = parse(process.env.DATABASE_URL);
+
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: isProduction ? { rejectUnauthorized: false } : false,
@@ -20,8 +23,9 @@ const pool = new Pool({
 
 export async function testConnection() {
   const res = await pool.query('SELECT NOW()');
-  const parsed = parse(process.env.DATABASE_URL!);
-  console.log(`✅ Connected to ${parsed.database} at ${parsed.host}:${parsed.port} — ${res.rows[0].now}`);
+  console.log(
+    `✅ Connected to Supabase session pooler at ${parsed.host}:${parsed.port} — ${res.rows[0].now}`
+  );
 }
 
 export default pool;
