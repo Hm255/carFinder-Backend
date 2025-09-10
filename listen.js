@@ -8,9 +8,15 @@ dotenv.config({
 });
 const { PORT = 9090 } = process.env;
 (async () => {
-    await testConnection();
+    try {
+        await testConnection();
+    }
+    catch (err) {
+        console.error('Database connection test failed:', err);
+        // Optionally: return here if you want to block startup on DB failure
+        // return;
+    }
     app.listen(PORT, () => {
         console.log(`Listening on ${PORT}... ${new Date().toISOString()} ${process.env.NODE_ENV}`);
     });
-    console.log(`${new Date().toISOString()} ${process.env.NODE_ENV} ${process.env.PORT || PORT}`);
 })();
