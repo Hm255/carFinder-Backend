@@ -1,4 +1,4 @@
-import db from "../db/connection.local.js";
+import db from "../db/connection.js";
 
 //psql types given below next to columns for ease of picturing the cars table properties
 

@@ -1,4 +1,4 @@
-import db from "../db/connection.local.js";
+import db from "../db/connection.js";
 export const fetchCars = async () => {
     const query = `
     SELECT
