@@ -37,6 +37,7 @@
     "@babel/core": "^7.28.4",
     "@babel/preset-env": "^7.28.3",
     "@babel/preset-typescript": "^7.27.1",
+    "@eslint/js": "^9.35.0",
     "@types/chai": "^5.2.2",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
@@ -46,10 +47,18 @@
     "@types/supertest": "^6.0.3",
     "chai": "^6.0.1",
     "cross-env": "^10.0.0",
+    "eslint": "^9.35.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "eslint-plugin-vue": "^10.4.0",
+    "globals": "^16.4.0",
+    "jiti": "^2.5.1",
     "mocha": "^11.7.2",
     "nodemon": "^3.1.10",
+    "prettier": "^3.6.2",
     "supertest": "^7.1.4",
     "ts-node": "^10.9.2",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.43.0"
   }
 }
