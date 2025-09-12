@@ -10,15 +10,8 @@ if (process.env.NODE_ENV !== 'production') {
 const { PORT = 9090, NODE_ENV } = process.env;
 
 (async () => {
-  try {
-    await testConnection();
-  } catch (err) {
-    console.error('Database connection test failed:', err);
-  }
-
-  app.listen(PORT, () => {
-    console.log(
-      `🚀 Server running in ${NODE_ENV} mode on port ${PORT} — ${new Date().toISOString()}`
-    );
-  });
+  await testConnection();
+  app.listen(PORT);
 })();
+
+

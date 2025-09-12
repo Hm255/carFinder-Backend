@@ -17,7 +17,6 @@ describe("GET /api/cars", () => {
 
     expect(response.statusCode).to.equal(200);
     expect(response.body).to.be.an("array");
-    console.log(response);
 
     const expectedCars: Car[] = [
       {

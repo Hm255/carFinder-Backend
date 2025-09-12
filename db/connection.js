@@ -16,6 +16,5 @@ const pool = new Pool({
 });
 export async function testConnection() {
     const res = await pool.query('SELECT NOW()');
-    console.log(`✅ Connected to Supabase session pooler at ${parsed.host}:${parsed.port} — ${res.rows[0].now}`);
 }
 export default pool;

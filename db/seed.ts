@@ -2,8 +2,6 @@ import pool from "./connection.js";
 
 export const seedDatabase = async (withinTest: boolean = false) => {
   let client;
-console.log('NODE_ENV:', process.env.NODE_ENV);
-console.log('DATABASE_URL:', process.env.DATABASE_URL);
   try {
     client = await pool.connect();
     await client.query("BEGIN");
@@ -431,9 +429,7 @@ CREATE TABLE IF NOT EXISTS cars (
       );
     }
     await client.query("COMMIT");
-    console.log("Database seeded successfully!");
   } catch (error) {
-    console.error("Error seeding the database:", error);
     if (client) {
       await client.query("ROLLBACK");
     }

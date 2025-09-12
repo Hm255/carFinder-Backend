@@ -39,7 +39,6 @@ app.all("/api/{*fail}", (req: Request, res: Response) => {
 
 const frontendPath = path.join(__dirname, "../frontend");
 if (fs.existsSync(frontendPath)) {
-  console.log(`✅ Serving static frontend from ${frontendPath}`);
   app.use(express.static(frontendPath));
 
   app.get("*", (req: Request, res: Response, next: NextFunction) => {
@@ -47,8 +46,6 @@ if (fs.existsSync(frontendPath)) {
     return res.sendFile(path.join(frontendPath, "index.html"));
   });
 } else {
-  console.warn("⚠️ No frontend folder found — skipping static file serving");
-  
   app.get("/", (req: Request, res: Response) => {
     res.send("Backend is running");
   });
@@ -69,7 +66,6 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
 
 
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
-  console.error(err);
   res.status(500).send({ msg: "Something went wrong" });
 });
 
