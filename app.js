@@ -8,6 +8,7 @@ const app = express();
 const allowedOrigins = [
     'http://localhost:5173',
     'https://my-only-carfinder.netlify.app/',
+    'https://carfinder-backend.onrender.com/'
 ];
 app.use(cors({
     origin: (origin, callback) => {
