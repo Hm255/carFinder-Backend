@@ -24,8 +24,8 @@
   },
   "homepage": "https://github.com/Hm255/carFinder-Backend#readme",
   "dependencies": {
-    "@supabase/supabase-js": "^2.57.3",
-    "axios": "^1.11.0",
+    "@supabase/supabase-js": "^2.57.4",
+    "axios": "^1.12.2",
     "cors": "^2.8.5",
     "dotenv": "^17.2.2",
     "express": "^5.1.0",
@@ -37,17 +37,17 @@
     "@babel/core": "^7.28.4",
     "@babel/preset-env": "^7.28.3",
     "@babel/preset-typescript": "^7.27.1",
-    "@eslint/js": "^9.35.0",
+    "@eslint/js": "^9.36.0",
     "@types/chai": "^5.2.2",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
     "@types/mocha": "^10.0.10",
-    "@types/node": "^24.3.1",
+    "@types/node": "^24.5.2",
     "@types/pg": "^8.15.5",
     "@types/supertest": "^6.0.3",
     "chai": "^6.0.1",
     "cross-env": "^10.0.0",
-    "eslint": "^9.35.0",
+    "eslint": "^9.36.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.4",
     "eslint-plugin-vue": "^10.4.0",
@@ -59,6 +59,6 @@
     "supertest": "^7.1.4",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.2",
-    "typescript-eslint": "^8.43.0"
+    "typescript-eslint": "^8.44.0"
   }
 }

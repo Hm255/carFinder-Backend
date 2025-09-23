@@ -14,4 +14,4 @@ It can be used to render the data within it to a frontend that intends to use it
 
 ## Where is this site hosted
 
-This will be hosted at https://timely-toffee-58d679.netlify.app (an unknown error from netlify stops me changing the site name to carFinder)
+This will be hosted at https://my-only-carfinder.netlify.app
