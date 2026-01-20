@@ -15,3 +15,9 @@ It can be used to render the data within it to a frontend that intends to use it
 ## Where is this site hosted
 
 This will be hosted at https://my-only-carfinder.netlify.app
+
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://my-only-carfinder.netlify.app',
+  'https://carfinder-backend.onrender.com'
+];

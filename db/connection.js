@@ -1,6 +1,7 @@
 import { Pool } from 'pg';
 import dotenv from 'dotenv';
 import { parse } from 'pg-connection-string';
+dotenv.config({ path: '.env.production' });
 if (process.env.NODE_ENV !== 'production') {
     dotenv.config({ path: `.env.${process.env.NODE_ENV || 'development'}` });
 }

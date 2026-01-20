@@ -1,0 +1,16 @@
+name: Keep Supabase Projects Alive
+
+on:
+  schedule:
+    - cron: "0 0 * * 1"
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Project 1
+        run: curl -s https://tqcrtddhppilzyojgden.supabase.co/rest/v1/
+
+      - name: Ping Project 2
+        run: curl -s https://heeaqbctwzgpgtfjzndm.supabase.co/rest/v1/
