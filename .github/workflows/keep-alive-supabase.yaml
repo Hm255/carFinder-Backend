@@ -2,7 +2,7 @@ name: Keep Supabase Projects Alive
 
 on:
   schedule:
-    - cron: "0 0 * * 1"
+    - cron: "5 * * * *"
   workflow_dispatch:
 
 jobs:
@@ -10,7 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Ping Project 1
-        run: curl -s https://tqcrtddhppilzyojgden.supabase.co/rest/v1/
-
-      - name: Ping Project 2
-        run: curl -s https://heeaqbctwzgpgtfjzndm.supabase.co/rest/v1/
+        run: | 
+          curl -s "$SUPABASE_URL/rest/v1/" \
+          -H "apikey: $SUPABASE_ANON_KEY" \
+          -H "Authorization: Bearer $SUPABASE_ANON_KEY" \
+        env: 
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }} 
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
